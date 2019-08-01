@@ -15,23 +15,33 @@ public class UserController {
 
     @GetMapping("/user")
     public List<User> findAll() {
-        return null;
+        List<User> user = userMapper.findAll();
+        return user;
     }
 
     @GetMapping("/user/{userId}")
     public User findById(@PathVariable long userId) {
-        return null;
+        User user = userMapper.findUserById(userId);
+        return user;
     }
 
     @PostMapping("/user")
     public void insertUser(@RequestBody User user) {
+        user = new User();
+        user.setId(30);
+        user.setName("杨洁");
+        userMapper.insertUser(user);
     }
 
     @PutMapping("/user/{userId}")
     public void updateUser(@RequestBody User user,@PathVariable int userId) {
+        user.setId(userId);
+        user.setName("yangjie12345");
+        userMapper.updateUser(user);
     }
 
     @DeleteMapping("/user/{userId}")
     public void deleteById(@PathVariable long userId) {
+        userMapper.delete(userId);
     }
 }
